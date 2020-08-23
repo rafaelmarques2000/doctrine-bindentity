@@ -15,7 +15,7 @@ No seu terminal execute: <br>
 **composer install rafaelmarques2000/doctrine-bindentity** <br>
 ao concluir a instalação execute o comando:<br>
 **php artisan vendor:publish**<br>
-e escolha a opção que contem o namespace **Doctrine\BindEntity** para publicar o arquivo de configuração entityregister.php
+e escolha a opção que contem o namespace **Doctrine\BindEntity** para publicar o arquivo de configuração bindentityconfig.php
 
 ## Como usar?
 
@@ -79,6 +79,14 @@ Se "empresa" for uma entidade ela deve ser registrada no arquivo de configuraç�
 - PUT: ao informar o ID na url é feito a busca automática da entidade no banco de dados e injetada na rota para que seja atualizada
 
 - DELETE: segue o mesmo conceito do PUT ao passar o ID busca no banco de dados a entidade a ser deletada e efetua a injeção na rota.
+
+## Considerações
+
+Abaixo uma lista de considerações sobre o projeto:
+
+- Quando entidades são instanciadas de forma automatica elas retornam a concreta e não suas abstratas(caso haja) então em alguns se flexibilidade forçando a criação de varios endpoints para tratar os varios tipos EX: se vc tiver um cadastro de beneficios Tipo Transporte,Alimentação você terá que criar um para cada caso.
+
+- O arquivo de configuração **bindentityconfig.php** é necessario para que você tenha controle do que vai ser instânciado ou não durante a requisição, deixando o controle de forma configuravel é garantido que somente as entidades necessarias serão instâciadas pelo laravel, mantendo a performace da aplicação.
 
  
 
