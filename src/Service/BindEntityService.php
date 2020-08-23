@@ -41,15 +41,9 @@ class BindEntityService
     private function postEntityInstance(Request $request){
 
         $bodyRequestKeys = array_keys($request->all());
-
-        if(count($bodyRequestKeys) > 1){
-            throw new \Exception("Falha ao processar requisição");
-        }
-
         $entity = $bodyRequestKeys[0];
-        if(!key_exists($entity,$this->entity)){
-            throw new \Exception("Entidade não encontrada");
-        }
+
+        $this->checkIfExistsEntityConfigurationFile($bodyRequestKeys, $entity);
 
         $constructParameter = $this->getArrayConstructorAttribute($request->all()[$entity]);
         $namespace = $this->entity[$entity];
@@ -63,18 +57,12 @@ class BindEntityService
 
     private function putEntityInstance(Request $request){
 
-         $bodyRequestKeys = array_keys($request->all());
+        $bodyRequestKeys = array_keys($request->all());
+        $entity = $bodyRequestKeys[0];
 
-         if(count($bodyRequestKeys) > 1){
-             throw new \Exception("Falha ao processar requisição");
-         }
+        $this->checkIfExistsEntityConfigurationFile($bodyRequestKeys, $entity);
 
-         $entity = $bodyRequestKeys[0];
-         if(!key_exists($entity,$this->entity)){
-             throw new \Exception("Entidade não encontrada");
-         }
-
-         $idEntity = $request->segment(2);
+        $idEntity = $request->segment(2);
 
          app()->bind($this->entity[$entity],function() use($entity,$idEntity){
              return EntityManager::getRepository($this->entity[$entity])->find($idEntity);
@@ -97,6 +85,22 @@ class BindEntityService
             return EntityManager::getRepository($this->entity[$key])->find($value);
         }
         return $value;
+    }
+
+    /**
+     * @param array $bodyRequestKeys
+     * @param $entity
+     * @throws \Exception
+     */
+    private function checkIfExistsEntityConfigurationFile(array $bodyRequestKeys, $entity): void
+    {
+        if(count($this->entity)){
+            throw new \Exception("Failed to process request: There are no entities set in the configuration file");
+        }
+
+        if (count($bodyRequestKeys) > 1 || !key_exists($entity, $this->entity)) {
+            throw new \Exception("Failed to process request: Doctrine entity not found in configuration file");
+        }
     }
 
 }
