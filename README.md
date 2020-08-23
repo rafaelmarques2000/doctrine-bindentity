@@ -19,24 +19,20 @@ e escolha a opção que contem o namespace **Doctrine\BindEntity** para publicar
 
 ## Como usar?
 
-no arquivo de configuração set as entidades que deseja mapear durante a request
+no arquivo de configuração set as entidades que deseja mapear durante a request e qual parametro da sua rota representa a chave primaria no banco de dados
 ```php
 <?php
 
 [
    entity =>[
-      "produto" =>"App\Produto::class"
+      "produto" =>"Namespace da entidade",
+      "parameterRouterEntityId" => "nome do parametro que represeta o id na rota para que o bind sabia buscar por este parametro"
    ]
 ];
 
 ```
-suas requisições **POST** e **PUT** deve ter o seguinte formato: <br>
+<br>
+Depois registe o namespace **Doctrine\BindEntity\BindEntityMiddleware::class** na lista de middlewares do laravel
 
-```json
-{
-   "produto":{
-     ... parametros do contrutor
-   }
-}
-```
+
 
