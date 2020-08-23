@@ -2,10 +2,10 @@
 
 namespace Doctrine\BindEntity\Http\Middleware;
 
-use App\Main\Services\BindEntityService;
+use Doctrine\BindEntity\Service\BindEntityService;
 use Closure;
 
-class BindEntity
+class BindEntityMiddleware
 {
 
     protected BindEntityService $bindEntityService;

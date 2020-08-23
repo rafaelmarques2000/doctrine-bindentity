@@ -5,6 +5,9 @@ Insert the doctrine entities in the low array in the format:
  */
 return [
     "entity" => [
-
+        "entity" => [
+            "namespace" => "",
+            "parameterRouterEntityId" => ""
+        ],
     ]
 ];

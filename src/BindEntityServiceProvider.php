@@ -16,12 +16,8 @@ class BindEntityServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/Config/entityregister.php' => config_path('entityregister.php'),
+            __DIR__ . '/Config/bindentityconfig.php' => config_path('bindentityconfig.php'),
         ]);
-
-        $router = $this->app["router"];
-        $router->pushMiddlewareToGroup('web', BindEntity::class);
-        $router->pushMiddlewareToGroup('api', BindEntity::class);
     }
 
 }
