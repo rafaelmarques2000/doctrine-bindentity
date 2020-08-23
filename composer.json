@@ -24,7 +24,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.*",
+        "php": "^7.4",
         "laravel-doctrine/orm": "1.6.*"
     }
 }

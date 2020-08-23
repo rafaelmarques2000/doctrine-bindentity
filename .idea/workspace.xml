@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d2ae962-5902-454c-91fd-7f33c3a0562a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,11 +35,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598144269381</updated>
-      <workItem from="1598144270434" duration="171000" />
+      <workItem from="1598144270434" duration="275000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="729" y="468" width="523" height="178" key="ComposerInitDialogKey" timestamp="1598144532715">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="729" y="468" width="523" height="178" key="ComposerInitDialogKey/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1598144532715" />
   </component>
 </project>
