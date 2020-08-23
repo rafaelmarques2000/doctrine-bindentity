@@ -34,5 +34,24 @@ no arquivo de configuração set as entidades que deseja mapear durante a reques
 <br>
 Depois registe o namespace **Doctrine\BindEntity\BindEntityMiddleware::class** na lista de middlewares do laravel
 
+## Controller
 
+No controller implemente o atributo **entityBind** que será responsavel por informar ao middleware qual entidade mapear de acordo a configuração 
+e implemente um metodo getter para que o mesmo consiga acessar a propridade a implementação segue como no exemplo abaixo: <br>
+
+```php
+
+class ExemploController extends Controller
+{
+    //propriedade para indicar ao middleware qual entidade procurar
+    protected $entityBind = "vale_transporte";
+    
+    //Suas actions 
+    
+    //Metodo getter para o middleware acessar 
+    public function getEntityBind(){
+        return $this->entityBind;
+    }
+}
+```
 
