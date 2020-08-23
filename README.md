@@ -25,8 +25,10 @@ no arquivo de configuração set as entidades que deseja mapear durante a reques
 
 [
    entity =>[
-      "produto" =>"Namespace da entidade",
-      "parameterRouterEntityId" => "nome do parametro que represeta o id na rota para que o bind sabia buscar por este parametro"
+       "produto" => [
+            "namespace" => \App\Modules\Produtos\Domain\Model\Produto::class,
+            "parameterRouterEntityId" => "" // nome do parametro em rota em que é passado o id(EX: id_produto)
+        ],
    ]
 ];
 
@@ -43,15 +45,40 @@ e implemente um metodo getter para que o mesmo consiga acessar a propridade a im
 
 class ExemploController extends Controller
 {
-    //propriedade para indicar ao middleware qual entidade procurar
-    protected $entityBind = "vale_transporte";
+    //propriedade para indicar ao middleware qual entidade procurar(tem que esta configurado no arquivo bindentityconfig)
+    //agora o middleware sabe que é uma entidade produto e irá buscar as configurações pelo valor definido abaixo
+    protected $entityBind = "produto";
     
     //Suas actions 
     
-    //Metodo getter para o middleware acessar 
+    //Metodo getter para o middleware acessar o nome da entidade a instanciar
     public function getEntityBind(){
         return $this->entityBind;
     }
 }
 ```
+## Requisições
+
+- GET(sem parametro):
+  Ao efetuar um listar completo o processador de entidades nao interfere na requisição e portanto não instancia entidades.
+  
+- GET(com parametro):
+  Ao informar um ID para fazer uma busca o o processador de entidades faz o processo de busca no banco de dados de acordo a entidade registrada no arquivo de configuração e informada no controller no parametro $entityBind;
+
+- POST: 
+Deve ser passado como parametro para cadastro todos os parametros do construtor da entidade afim de de que o mesmo seja construido caso um dos parametros seja outra entidade deve ser passar o nome registrado no arquivo de configuração seguido do seu ID para que a entidade seja buscada e instanciada dentro do objeto principal ex:
+
+```
+ {
+    "empresa":"111-1111-1111-11",
+    "nome_produto":"teste"
+ }
+```
+Se "empresa" for uma entidade ela deve ser registrada no arquivo de configuração para que seja possivel instanciar o seu objeto correspondente
+
+- PUT: ao informar o ID na url é feito a busca automática da entidade no banco de dados e injetada na rota para que seja atualizada
+
+- DELETE: segue o mesmo conceito do PUT ao passar o ID busca no banco de dados a entidade a ser deletada e efetua a injeção na rota.
+
+ 
 
