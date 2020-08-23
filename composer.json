@@ -1,5 +1,5 @@
 {
-    "name": "rafael/bindentity",
+    "name": "rafaelmarques2000/bindentity",
     "description": "this package usage in bind entitys doctrine in app laravel application",
     "type": "library",
     "license": "MIT",
