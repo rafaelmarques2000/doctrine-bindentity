@@ -1,0 +1,30 @@
+{
+    "name": "doctrine/bindentity",
+    "description": "this package usage in bind entitys doctrine in app laravel application",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Rafael Marques",
+            "email": "rafaelmarquespaixao@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Doctrine\\BindEntity\\" : "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Doctrine\\BindEntity\\BindEntityServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.*",
+        "laravel-doctrine/orm": "1.6.*"
+    }
+}
